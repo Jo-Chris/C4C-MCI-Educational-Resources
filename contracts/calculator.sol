@@ -1,140 +1,107 @@
 // SPDX-License-Identifier: GPL-3.0
 
+// compiler version -->
 pragma solidity ^0.8.18;
 
-contract AwesomeCalculator {
-    // state var!
-    // uint is the same as uint256
-    uint result = 0; // does not have () because it is not a function!
+// comments, this is just a comment to not forget stuff
+// gets ignored by the compiler
 
-    // function keyword - indicates the start of a function
-    // getName() => the identifier / the name of the function
-    // public => accessible from outside and inside (everyone!)
-    // pure => does not mutate the state... what does that mean? we'll see later
-    // returns (type) => indicates, that this function returns a value back
-    // return "Welc..." => the return value, this gets returned from the function
+/*
+multi line comments
+*/
+
+contract Calculator {
+    // state variable
+    // should store the result of every operation we do (add, sub, ...)
+    uint result = 0;
+
+    /* a simple function returning our name
+        function - indicates a start of a new function
+        getName() - the identifier of the function / "the name of the function"
+        public - a modifier, indicates the reachability of the function (others: private, external)
+        pure - means, it does neither READ nor WRITE nor MODIFY the state
+        returns (type) - indicate to the compiler, that we return something of type
+        return - the final statement of a function that returns something
+        and dont forget the ;
+     */
     function getName() public pure returns (string memory) {
-        return "Welcome to my awesome calculator";
+        return "My name is Chris";
     }
 
-    // view indicates, that we do not modify the state (hence, the result variable)
-    // pure on the other hand is even more restrictive, it indicates
-    // ... that we are not even returning state!
-    // remember as this: pure can live on "its own"
-    function getResult() public view returns (uint) {
+    /* this function should add 2 values together
+       uint parameter1 - the first parameter we can send to the function
+       uint parameter2 - the second parameter we can send to the function
+       both are of type uint, uint == uint256, meaning 0 to 2^256 values */
+    function add(uint parameter1, uint parameter2) public {
+        result = parameter1 + parameter2;
+    }
+
+    // create a sub function
+    // that substrats one parameter from another
+    // deploy the contract again and verify the result
+    function sub(uint parameter1, uint parameter2) public {
+        result = parameter1 - parameter2;
+    }
+
+    // multiply
+    function mul(uint parameter1, uint parameter2) public {
+        result = parameter1 * parameter2;
+    }
+
+    // division
+    function div(uint parameter1, uint parameter2) public {
+        result = parameter1 / parameter2;
+    }
+
+    // return whats stored inside the 'result'
+    // every function: add, sub, mul, div stores their result to the 'result' variable
+    function getResult() public view returns(uint) {
         return result;
     }
 
-    function add(uint param1, uint param2) public {
-        // calculate something and store it into the result variable
-        result = param1 + param2;
-        // result does no longer store 0, but the addition of the two params(1/2)
+    // should calculate 2^10 = 1024
+    function exp(uint parameter1, uint parameter2) public {
+        result = parameter1 ** parameter2;
     }
 
-    // create the multiplication function
-    // update the 'result' variable after the multiplication
-    // do a mul(); write operation (on the left side under deployed contracts)
-    // do a read operation of the value
-    function mul(uint param1, uint param2) public pure {
-        param1 * param2;
+    // those who are fast, do the mod() (modulo operation)
+    // % is used to calculate the remainder of the division
+    // 11 % 2 = 1
+    // 2 % 5 = 2
+    // check if a number is odd or even? do (param % 2) = either 0 or 1
+    function mod(uint parameter1, uint parameter2) public {
+        result = parameter1 % parameter2;
     }
 
-    // your task again:
-    // add the functions
-    // sub() - substraction
-    // expo() - exponentiation
-    // mod() - modulo operation (remainder of the division)
-    function expo(uint param1, uint param2) public {
-        result = param1 ** param2;
-    }
-
-    function mod(uint param1, uint param2) public {
-        result = param1 % param2;
-    }
-
-    // string example
-    // whats a string? --> text!
-    function compare(string memory param1, string memory param2) public pure returns (bool)  {
-        // quick excursion to string comparison:
-        // in other programming languages, we can do the following
+    // working with strings
+    // hashing strings, comparing strings
+    // keccak256() - is used to create the hash of a string
+    function compare(string memory a, string memory b) public pure returns (string memory) {
         /*
-            string myName = 'chris'
-            string otherName = 'kevin'
-
-
-        // reference, whenever we compare strings, this does not work:
-        if (param1 == param2) {
-            return "Hey nice, they match!";
-        } else {
-            return "Ooouch, they do not match!";
-        }
+            a == b (if they are both numbers) will work!
+            we cannot compare strings in solidity like a == b
+            desired output? chris == chris
         */
-        // we return a bool'sche value here
-        // 👇 This is a function signature
-        // 👇 It indicates how the function is used
-        // - (which parameters we need to provide)
-        // - (and what return type we get back)
-        // >>> keccak256(bytes memory) returns (bytes32) <<<
+        // creates the hash of the a parameter
+        // creates the hash of the b parameter
 
+        // this is the long form
+        // bytes takes an parameter and converts from "string" -> "bytes"
+        // keccak256 gets a "bytes" type and returns the hash
 
-        // long version of hashing a string
-        // convert from string -> bytes -> hashing = bytes32
-        // --- bytes memory myStringAsBytes = bytes(param1);
-        // --- bytes32 myResult = keccak256(myStringAsBytes);
-        // short version
-        // --- keccak256(bytes(param1));
+        bytes memory bytesOfA = bytes(a);
+        bytes memory bytesOfB = bytes(b);
+        bytes32 hashOfA = keccak256(bytesOfA);
+        bytes32 hashOfB = keccak256(bytesOfB);
 
-        return keccak256(bytes(param1)) == keccak256(bytes(param2));
-    }
-
-    function comparedIf(
-        string memory name1,
-        string memory name2
-    ) public pure returns (string memory) {
-        if(compare(name1, name2)) {
-            return "They match! Niceeeee";
+        if(hashOfA == hashOfB) {
+            return "smooth. thats the same!";
         } else {
-            return "Ooouch... not really working.";
+            return "nah, that does not seem right";
         }
-    }
-
-    // this calculator is a bit rusty. With what we know now,
-    // we do not need a function for each case (case = mul, sub, add)
-    // we rather can one function called <<insert your desired name, up to you>>
-    // that should get the operation as a parameter (like mul, add, sub)
-    // and two parameters (param1, param2)
-    // and return the result of the operation
-    function theGodCalculator() public {
-        // inside here, everything from above should workd
-    }
-
-    function theGodCalculatorFn(
-        string memory operation,
-        uint param1,
-        uint param2
-    ) public pure returns (uint) {
-        // hash of the operation is known
-        bytes32 operationHash = keccak256(bytes(operation));
-
-        // check which operation matches
-        if(operationHash == keccak256(bytes("mul"))) {
-            return param1 * param2;
-        } else if (operationHash == keccak256(bytes("sub"))) {
-            return param1 - param2;
-        } else if (operationHash == keccak256(bytes("add"))) {
-            return param1 + param2;
-        } else if (operationHash == keccak256(bytes("exp"))) {
-            return param1 ** param2;
-        } else if (operationHash == keccak256(bytes("mod"))) {
-            return param1 % param2;
-        }  else if (operationHash == keccak256(bytes("div"))) {
-            return param1 / param2;
-        } else {
-            // none of the above matches, bad call :(
-            revert("Read the code, this operation does not exist!");
-        }
+        // short: keccak256(bytes(a)) == keccak256(bytes(b))
+        // return hashOfA == hashOfB --> this is the same as keccak256(bytes(a)) == keccak256(bytes(b))
+        // this is the short form
+        // return keccak256(bytes(a)) == keccak256(bytes(b));
     }
 }
-
-
-
