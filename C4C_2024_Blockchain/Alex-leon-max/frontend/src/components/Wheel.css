@@ -1,0 +1,40 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #2980b9, #3498db); /* Blau-Verlauf */
+  }
+  
+  .wheel-container {
+    position: relative;
+    text-align: center;
+  }
+  
+  .selected-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #fff; /* Weißer Text für bessere Lesbarkeit */
+  }
+  
+  .wheel-canvas {
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .wheel-container::before {
+    content: '';
+    position: absolute;
+    top: -40px; /* Position des Pfeils über dem Rad */
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg); /* Dreht den Pfeil nach unten */
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 25px solid #000000; /* Farbe des Pfeils */
+    z-index: 1;
+  }
+  

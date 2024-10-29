@@ -1,0 +1,448 @@
+/* Allgemeine Stile */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #000000;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Container */
+.container,
+.start-screen,
+.shop-screen {
+  display: flex;
+  background: rgb(242,255,0);
+background: radial-gradient(circle, rgba(242,255,0,1) 0%, rgba(136,254,47,1) 30%, rgba(0,255,237,1) 52%, rgba(0,104,255,1) 87%, rgba(10,0,255,1) 100%);
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  z-index: 3;
+}
+
+.game-name {
+  size: 1000px;
+  font-size: 60px;
+  border-radius: 200px;
+  color: darkgray;
+  padding: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(34,193,195);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+background: linear-gradient(0deg, rgba(34,193,195,0.7413340336134453) 0%, rgba(81,54,147,0.7665441176470589) 100%);
+
+}
+
+/* Coin-Anzeige */
+.coin-display {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #fff;
+  background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,0.8972776610644257) 29%, rgba(255,255,255,0.9084821428571429) 100%);
+  padding: 10px 20px;
+  border-radius: 50px;
+  z-index: 10;
+  box-shadow: 0 12px 10px rgba(0, 255, 128, 0.3);
+}
+
+/* Back-Button */
+.back-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 50px;
+  z-index: 10;
+}
+
+/* Benachrichtigungen */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgb(0,36,34);
+  background: linear-gradient(90deg, rgba(0,36,34,1) 0%, rgba(12,67,205,1) 55%, rgba(11,80,209,1) 60%, rgba(0,212,255,1) 100%);
+  color:  rgb(0,212,255);
+  color:  linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(11,80,209,1) 40%, rgba(12,67,205,1) 56%, rgba(0,36,34,1) 100%);
+  padding: 15px 20px;
+  border-radius: 50px;
+  box-shadow: 0 8px 15px rgba(0, 255, 221, 0.5);
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.notification.show {
+  opacity: 1;
+  animation: fadeOut 2s 2s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Hintergrundanimation */
+@keyframes wave {
+  0% {
+    transform: translateX(-100%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(100%) translateY(50%);
+  }
+
+  100% {
+    transform: translateX(-100%) translateY(100%);
+  }
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
+.pulsierend {
+background-color: #3498db;
+border: none;
+border-radius: 5px;
+color: white;
+padding: 10px 20px;
+font-size: 16px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+animation: pulsieren 2s infinite;
+}
+
+.pulsierend:hover {
+background-color: #2980b9;
+}
+
+.background-waves {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255, 255, 255, 0.908) 0%, rgba(0,0,0,0.8972776610644257) 100%);
+  background-size: 200% 200%;
+  animation: gradientAnimation 15s ease infinite, wave 25s linear infinite;
+  z-index: 1;
+}
+
+.container {
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.account-information {
+  padding: 20px;
+  background: rgb(58,122,180);
+  background: linear-gradient(90deg, rgba(58,122,180,1) 0%, rgba(246,255,0,1) 52%, rgba(69,252,103,1) 100%);
+  color:linear-gradient(90deg, rgb(0, 17, 255) 0%, rgba(246,255,0,1) 52%, rgba(69,252,103,1) 100%);
+  font-size: 25px;
+  text-align: center;
+  border-radius: 90px;
+  margin-bottom: 1000px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* Button-Stile */
+.start-button,
+.buy-button {
+  padding: 20px 40px;
+  margin: 10px;
+  border: none;
+  border-radius: 12px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 18px;
+  background: linear-gradient(45deg, #0b5c00, #1eff00);
+  color: #000000;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+
+} 
+
+.connect-button {
+  padding: 20px 40px;
+  margin: 10px;
+  border: 10px;
+  margin-bottom: -1000px;
+  margin-right: -10px;
+  border-radius: 70px;
+  cursor: pointer;
+  font-size: 25px;
+  background: linear-gradient(45deg, #ff00ff, #470047);
+  color: #000000;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.back-button {
+  padding: 20px 40px;
+  margin: 10px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 20px;
+  background: linear-gradient(45deg, #fd0000, #ffa0a0);
+  color: #000000;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.connect-button:hover {
+  transform: scale(1.2);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  background: linear-gradient(45deg, #9c007a, #750075);
+  color: #ffffff;
+}
+
+.buy-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 1px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  background: linear-gradient(45deg, #136100, #1f8300);
+  color: #ffffff;
+}
+
+.back-button:hover {
+  transform: scale(1.3);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(45deg, #af0000, #914b4b);
+  border-radius: 20px;
+  color: #ffffff; 
+}
+
+.start-button:hover {
+  transform: scale(1.3);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  background: linear-gradient(45deg, #009419, #005713);
+  color: white; 
+}
+
+.buy-button {
+  padding: 20px 40px;
+  margin: 10px;
+  border: none;
+  border-radius: 70px;
+  cursor: pointer;
+  font-size: 18px;
+  background: linear-gradient(45deg, #0b5c00, #1eff00);
+  color: #000000;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  background-color: #282c34;
+}
+
+.App {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-header {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.start-button {
+  background-color: #4CAF50;
+}
+
+.start-button:hover {
+  background-color: #45a049;
+}
+
+.about-button {
+  background-color: #2196F3;
+}
+
+.about-button:hover {
+  background-color: #1e87e5;
+}
+
+.landing-background {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.gallery-background {
+  text-align: center;
+  height: 100vh;
+  background: rgb(0,36,34);
+background: linear-gradient(90deg, rgba(0,36,34,1) 0%, rgba(205,12,94,1) 55%, rgba(0,212,255,1) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.content {
+  background: white;
+  padding: 3rem;
+  border-radius: 15px;
+}
+
+.image-row {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-bottom: 3rem;
+  width: 50%;
+}
+
+.img {
+  width: 256px;
+  height: 256px;
+  margin-right: 1rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.img:hover {
+  cursor:pointer;
+  border-radius: 50% 25%; /* Elliptical border radius */
+  transform: scale(1.1); /* Slightly enlarge the image on hover */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Optional: add a glow effect */
+}/* App.css */
+
+/* Other existing styles */
+
+.animal-stats {
+margin-top: 20px;
+text-align: left;
+font-size: 1.2rem;
+line-height: 2rem;
+color: white;
+}
+
+.animal-stats p {
+margin: 5px 0;
+color: #fff;
+background-color: rgba(0, 0, 0, 0.5);
+padding: 10px;
+border-radius: 5px;
+}
+/* App.css */
+
+/* Other existing styles */
+
+.animal-stats {
+margin-top: 20px;
+display: grid;
+grid-template-columns: 1fr 1fr; /* Two columns layout */
+gap: 20px; /* Space between items */
+text-align: center;
+color: white;
+}
+
+.animal-stats p {
+font-size: 1.5rem; /* Larger font size */
+font-weight: bold; /* Bold text */
+background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+padding: 15px;
+border-radius: 10px;
+border: 2px solid #ffffff; /* White border */
+box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* Soft white glow */
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animal-stats p:hover {
+transform: scale(1.1); /* Slightly enlarge on hover */
+box-shadow: 0 0 25px rgba(255, 255, 255, 0.5); /* Stronger glow on hover */
+}
+
+/* Adding distinct colors for each animal */
+.rabbit {
+color: #ff6b6b; /* Red color for Rabbit */
+}
+
+.fox {
+color: #ffa726; /* Orange color for Fox */
+}
+
+.husky-king {
+color: #29b6f6; /* Blue color for Husky King */
+}
+
+.cat {
+color: #ab47bc; /* Purple color for Cat */
+}
+
+
